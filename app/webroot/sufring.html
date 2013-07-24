@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Sufring</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<link href="css/reset.css" rel="stylesheet" type="text/css">
+ <!------   Slider CSS START ------>
+<link href="css/demo.css" rel="stylesheet" type="text/css">
+ <!------   Clander CSS START ------>
+<link rel="stylesheet" type="text/css" href="css/calendar.css" />
+<link rel="stylesheet" type="text/css" href="css/custom_2.css" />
+ <!------   Main CSS START ------>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!--<script src="js/jquery-latest.min.js" type="text/javascript"></script>
+<script src="js/modernizr-latest.js" type="text/javascript"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<!------   Slide Java script ------>
+	<script src="js/slides.min.jquery.js"></script>
+    <script src="js/demofunction.js"></script>
+    <!------   Calander Java script START ------>
+    <script src="js/modernizr.custom.63321.js"></script>
+    	<script type="text/javascript" src="js/jquery.calendario.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
+		<script type="text/javascript">	
+			$(function() {
+			
+				var transEndEventNames = {
+						'WebkitTransition' : 'webkitTransitionEnd',
+						'MozTransition' : 'transitionend',
+						'OTransition' : 'oTransitionEnd',
+						'msTransition' : 'MSTransitionEnd',
+						'transition' : 'transitionend'
+					},
+					transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+					$wrapper = $( '#custom-inner' ),
+					$calendar = $( '#calendar' ),
+					cal = $calendar.calendario( {
+						onDayClick : function( $el, $contentEl, dateProperties ) {
+
+							if( $contentEl.length > 0 ) {
+								showEvents( $contentEl, dateProperties );
+							}
+
+						},
+						caldata : codropsEvents,
+						displayWeekAbbr : true
+					} ),
+					$month = $( '#custom-month' ).html( cal.getMonthName() ),
+					$year = $( '#custom-year' ).html( cal.getYear() );
+
+				$( '#custom-next' ).on( 'click', function() {
+					cal.gotoNextMonth( updateMonthYear );
+				} );
+				$( '#custom-prev' ).on( 'click', function() {
+					cal.gotoPreviousMonth( updateMonthYear );
+				} );
+
+				function updateMonthYear() {				
+					$month.html( cal.getMonthName() );
+					$year.html( cal.getYear() );
+				}
+
+				// just an example..
+				function showEvents( $contentEl, dateProperties ) {
+
+					hideEvents();
+					
+					var $events = $( '<div id="custom-content-reveal" class="custom-content-reveal"><h4>Events for ' + dateProperties.monthname + ' ' + dateProperties.day + ', ' + dateProperties.year + '</h4></div>' ),
+						$close = $( '<span class="custom-content-close"></span>' ).on( 'click', hideEvents );
+
+					$events.append( $contentEl.html() , $close ).insertAfter( $wrapper );
+					
+					setTimeout( function() {
+						$events.css( 'top', '0%' );
+					}, 25 );
+
+				}
+				function hideEvents() {
+
+					var $events = $( '#custom-content-reveal' );
+					if( $events.length > 0 ) {
+						
+						$events.css( 'top', '100%' );
+						Modernizr.csstransitions ? $events.on( transEndEventName, function() { $( this ).remove(); } ) : $events.remove();
+
+					}
+
+				}
+			
+			});
+		</script> <!------   Calander Java script END  ------>
+
+</head>
+
+<body>
+<div id="wrapper">
+<!-- start html block -->
+    <header>
+    	<h1 class="logo"><a href="#"><img src="img/surfing_logo.png" alt="surfing_logo" title="Surfing_logo" width="283" height="65"/></a></h1>
+        <div class="joinus">
+        <ul>
+        	<li><a href="#">Join us on Facebook<br><span class="keepup">and keep up to date with all the news</span></a></li>
+            <li><a href="#"><img class="facebookicon" src="img/facebook_icon.png" alt="facebook_icon"/></a></li>
+        </ul>
+        </div>
+    </header>
+
+    <nav>
+        <ul class="main-nav">
+            <li><a href="#">HOME </a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">RACE CALANDER</a></li>
+        <!--<ul class="children">
+            <li><a href="#">Child One</a></li>
+            <li><a href="#">Child Two with child</a>
+        <ul class="children">
+            <li><a href="#">Child One</a></li>
+            <li><a href="#">Child Two</a></li>
+            <li><a href="#">Child Three</a></li>
+        </ul>
+        </li>
+            <li><a href="#">Child Three</a></li>
+        </ul>-->
+            <li><a href="#">CHAMPIONSHIP</a></li>
+             <li><a href="#">GALLERY</a></li>
+              <li><a href="#">BLOG</a></li>
+        </ul>
+    </nav>
+	<section class="banner">
+     <div id="slides">
+        <div class="slides_container">
+            <a href="#" title="banner-1" target="_blank"><img src="img/slider_1.jpg" width="996" height="340" alt="Slide 1"></a>
+            <a href="#" title="banner-2" target="_blank"><img src="img/slider_1.jpg" width="996" height="340" alt="Slide 2"></a>
+            <a href="#" title="banner-3" target="_blank"><img src="img/slider_1.jpg" width="996" height="340" alt="Slide 3"></a>
+        </div>
+    <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+    <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+    </div>
+    </section>
+
+  <section class="content">
+    
+    <!-- post 1 -->
+    <article class="post">
+ 		<div class="surfing-club">
+        <h1 class="post-title"><a href="#">Welcome to surfing club </a></h1>
+        <p class="postimg"><a href="#"><img src="img/wecome_surf.jpg" alt="surfing-club" title="img-1"/></a></p>
+        <p class="description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua <span class="more"><a href="#">[+more]</a></span></p>
+        </div> 
+        <div class="about-club">
+        <h1 class="post-title"><a href="#">About Us</a></h1>
+        <p class="postimg"><a href="#"><img src="img/about_surf.jpg" alt="surfing-club" title="img-1"/></a></p>     <p class="description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua <span class="more"><a href="#">[+more]</a></span></p>
+        </div>
+        <div class="events-club">
+        <h1 class="post-title"><a href="#">Our Events</a></h1>
+        <p class="postimg"><a href="#"><img src="img/events_surf.jpg" alt="surfing-club" title="img-1"/></a></p>     <p class="description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua <span class="more"><a href="#">[+more]</a></span></p>
+        </div>      
+    </article>
+    <!-- end post 1 -->
+    
+    <!-- post 1 -->
+    <article class="post">
+    <div class="post-inner">
+	<div class="latest-news">
+        <h1 class="text-title"><a href="#">Latest News</a></h1>
+        <div class="latest-inner">
+        <div class="dated-img">
+        	<a href="#"><img src="img/latestnews_1.jpg" alt="img-1" title="img" width="124" height="124"/></a>
+        </div>
+        <div class="dated">
+        <h4 class="date-title"><a href="#">L15 Mar, 2013</a></h4>
+        <p class="date-description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+        </div>
+        </div>
+       <div class="latest-inner">
+        <div class="dated-img">
+        	<a href="#"><img src="img/latestnews_1.jpg" alt="img-1" title="img" width="124" height="124"/></a>
+        </div>
+        <div class="dated">
+        <h4 class="date-title"><a href="#">L15 Mar, 2013</a></h4>
+        <p class="date-description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+        </div>
+        </div> 
+        <div class="latest-inner">
+        <div class="dated-img">
+        	<a href="#"><img src="img/latestnews_1.jpg" alt="img-1" title="img" width="124" height="124"/></a>
+        </div>
+        <div class="dated">
+        <h4 class="date-title"><a href="#">L15 Mar, 2013</a></h4>
+        <p class="date-description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+        </div>
+        </div>
+              <p class="seeallnews"><a href="#">See all news</a></p>
+        </div>
+        <div class="chempion-news">
+        <h1 class="text-title"><a href="#">Championship</a></h1> 
+        <div class="chempion-news-inner">   
+        <p class="description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio.</p>
+<p class="description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio.</p>
+<p class="description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio.</p>
+	<h2 class="peoplesay">People say</h2>
+    <p class="description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio.</p>
+<p class="description">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio.</p>
+<h3 class="deatils"><a href="#">- Set magna ipsum dolo</a></h3>
+        </div>
+        </div>
+        <div class="clendar-news">
+        <h1 class="text-title"><a href="#">Calendar</a></h1> 
+        <div class="clendar-news-inner">   
+
+			<section class="main">
+				<div class="custom-calendar-wrap">
+					<div id="custom-inner" class="custom-inner">
+						<div class="custom-header clearfix">
+							<nav>
+								<span id="custom-prev" class="custom-prev"></span>
+								<span id="custom-next" class="custom-next"></span>
+							</nav>
+							<h2 id="custom-month" class="custom-month"></h2>
+							<h3 id="custom-year" class="custom-year"></h3>
+						</div>
+						<div id="calendar" class="fc-calendar-container"></div>
+					</div>
+				</div>
+			</section>
+
+        </div>
+        </div>
+        </div>
+    </article>
+    <!-- end post 1 -->
+
+ </section>
+    <footer>
+        <div class="footer-left">
+        <ul class="footer-nav">
+            <li><a href="#">HOME </a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">RACE CALANDER</a></li>
+            <li><a href="#">CHAMPIONSHIP</a></li>
+             <li><a href="#">GALLERY</a></li>
+              <li><a href="#">BLOG</a></li>
+        </ul>
+        </div>
+        <div class="footer-right"><a href="#">Liveoutsource Ltd.</a> - <a href="#">Privacy Policy</a></div>
+    </footer>
+
+<!-- end html block -->
+
+</div>
+</body>
+
+
+</html>
